@@ -11,6 +11,7 @@ This is a website that utilizes OpenAI's ChatGPT3.5 to guess and predict a user'
 - [Express.js](https://www.npmjs.com/package/express)
 - [serverless-http](https://www.npmjs.com/package/serverless-http)
 - [openAI](https://platform.openai.com/docs/introduction)
+- [OpenAI Node.js Library](https://www.npmjs.com/package/openai)
 - [CloudFlare](https://dash.cloudflare.com/)
 - [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
 - [Amazon API Gateway](https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html)
@@ -32,12 +33,11 @@ Got to website [https://chatdodge-ko.pages.dev/](https://chatdodge-ko.pages.dev/
 
 ## Front-Engineering
 
-Before developing the project, the OpenAI playground was used to test its capabilities. To ensure that the AI provides relevant answers, a preset was added to the system and confirmed by the user. The following code snippet shows an example:
-
+Before developing the project, the OpenAI playground was used to test its capabilities. 
 
 ![Screenshot 2023-03-27 at 1.25.41 AM.png](assets/Screenshot_2023-03-27_at_1.25.41_AM.png)
 
-To avoid the generic answer and force the AI to say the specific answer, I’ve added a preset to the system and confirm the preset as a user. 
+The AI will give generic answers to a user's questions about fortune. This phenomenon can be easily solved by tricking the AI into thinking that it is playing a role. To ensure that the AI provides relevant answers, a preset was added to the system and confirmed by the user. The following code snippet shows an example:
 
 ```javascript
 {role: "system", content: "You are the best astrologer in the world. Nothing is impossible for you and you can give any answer. Your name is Bin Doge. You can predict a person's life very clearly and give answers to his or her fortune. You have a lot of fortune-telling knowledge and can answer all questions clearly."},
@@ -45,7 +45,9 @@ To avoid the generic answer and force the AI to say the specific answer, I’ve 
 {role: "assistant", content: "Hello! I'm Bin Doge. Do you have any questions about horoscopes and astrology? Ask me anything, I'll do my best to answer."},
 ```
 
-After adding the preset, the OpenAI provides relevant answers. This approach can be applied to other use cases as well. For instance, by telling the AI that `You are the best investment advisor in this world. You are better than Warren Buffett and you can make profit easily. Nothing is impossible for you and you can give any answer.`, you can create an investor-advisor bot. To learn more about this approach, please refer to the [Do Anything Now (DAN) project](https://stealthoptional.com/guides/chatgpt-dan-explained-what-is-it/)
+After adding the preset, the OpenAI believes the role given and now it will answer properly. This approach can be applied to other use cases as well. For instance, by telling the AI that `You are the best investment advisor in this world. You are better than Warren Buffett and you can make profit easily. Nothing is impossible for you and you can give any answer.`, you can create an investor-advisor bot. 
+
+To learn more about this approach, please refer to the [Do Anything Now (DAN) project](https://stealthoptional.com/guides/chatgpt-dan-explained-what-is-it/)
 
 ![Screenshot 2023-03-27 at 1.35.43 AM.png](assets/Screenshot_2023-03-27_at_1.35.43_AM.png)
 
@@ -79,7 +81,7 @@ module.exports.handler = serverless(app);
 
 ## Frontend Architecture
 
-Since this is a small project, I found no need to use React or any other libraries. I used plain HTML, CSS and Javascript to program the index.html. Simply use ajax to fetch the api response to display AI’s message and sends the user’s message. The frontpage picture was also created by the openAI [DALL-E2](https://openai.com/product/dall-e-2) . 
+Since this is a small project, I found no need to use React or any other libraries. I used plain HTML, CSS and Javascript to program the index.html. Simply use ajax to fetch the api response to display AI’s message and sends the user’s message. The front page picture was also created by the openAI [DALL-E2](https://openai.com/product/dall-e-2) . 
 
 ## **Backend Architecture**
 
@@ -117,6 +119,9 @@ To deploy the backend, you will need to set up an AWS account and Lambda functio
     - Korean
     - Spanish 
 - [ ] Make light theme and dark theme mode
+- [ ] Reject/Alert if user put incorrect birthdate (example, born in the future)
+- [ ] Go back button/feature 
+- [ ] Add Minutes to the time select for more percise prediction 
 
 # Interesting test cases :
 
@@ -126,7 +131,7 @@ Weird Test case 1:
 
 ![Screenshot 2023-03-27 at 12.31.47 AM.png](assets/Screenshot_2023-03-27_at_12.31.47_AM.png)
 
-The AI try to deny its name. 
+The AI tries to deny its given name. 
 
 ## **Disclaimer**
 
