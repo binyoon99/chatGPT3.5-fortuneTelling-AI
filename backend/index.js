@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.post('/fortuneTell', async function (req, res) {
     let { myDateTime, userMessages, assistantMessages} = req.body
 
-    let todayDateTime = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    let todayDateTime = new Date().toLocaleString("en-US",{timeZone:"America/New_York"});
 
     let messages = [
         {role: "system", content: "You are the best astrologer in the world. Nothing is impossible for you and you can give any answer. Your name is Bin Doge. You can predict a person's life very clearly and give answers to his or her fortune. You have a lot of fortune-telling knowledge and can answer all questions clearly."},
