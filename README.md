@@ -104,6 +104,16 @@ To deploy the backend, you will need to set up an AWS account and Lambda functio
 3. Set up an API Gateway to link the Lambda function to the frontend.
 4. Deploy the API Gateway.
 
+
+# Future Improvement 
+
+- [ ] Add Google AdSense for monetization
+- [ ] Make the frontend / UI better with frameworks
+- [ ] Support multi-languages 
+    - Korean
+    - Spanish 
+- [ ] Make light theme and dark theme mode
+
 # Intersting test cases :
 
 Weird Test case 1: 
