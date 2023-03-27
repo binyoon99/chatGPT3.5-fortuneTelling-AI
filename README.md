@@ -1,18 +1,18 @@
 
 
-# Introduction : Fortune Teller Website
+# Project Description: Fortune Teller Website
 
-This is a web application that predicts a user's fortune based on their date and time of birth. It uses OpenAI ChatGPT3.5 to generate the predictions. The frontend is built with plain HTML, CSS, and JavaScript, while the backend is built with Node.js and the Express.js framework. The backend is hosted via AWS Lambda function, making the project serverless.
+This is a website that utilizes OpenAI's ChatGPT3.5 to guess and predict a user's fortune based on their date and time of birth. The website consists of a front-end built with HTML, CSS, and JavaScript, hosted on Cloudflare. The back-end is built with Node.js version 14.21.3 and Express.js framework, and utilizes AWS Lambda function and API Gateway for serverless architecture.
 
 ## Technologies Used:
 
 - HTML / CSS / JavaScript
 - Node js
 - [Express js]([https://www.npmjs.com/package/express](https://www.npmjs.com/package/express))
-- [serverless-http] ([https://www.npmjs.com/package/serverless-http](https://www.npmjs.com/package/serverless-http))
-- [openAI] ([https://platform.openai.com/docs/introduction](https://platform.openai.com/docs/introduction))
-- CloudFlare([https://dash.cloudflare.com/](https://dash.cloudflare.com/))
-- [AWS Lambda Function] ([https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions))
+- [serverless-http](https://www.npmjs.com/package/serverless-http)
+- [openAI](https://platform.openai.com/docs/introduction)
+- [CloudFlare](https://dash.cloudflare.com/)
+- [AWS Lambda Function](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions)
 
 ## **Dependencies**
 
@@ -31,9 +31,8 @@ Got to website [https://chatdodge-ko.pages.dev/](https://chatdodge-ko.pages.dev/
 
 ## Front-Engineering
 
-Before I begin my development, I’ve used the openAi playground to test its limit. 
+Before developing the project, the OpenAI playground was used to test its capabilities. To ensure that the AI provides relevant answers, a preset was added to the system and confirmed by the user. The following code snippet shows an example:
 
-In order for AI to give the answers you want, you need to do front engineering. Since the current AI acknowlege it’s capability, if you simple ask the AI to tell about `my fortune` it will say the following : 
 
 ![Screenshot 2023-03-27 at 1.25.41 AM.png](assets/Screenshot_2023-03-27_at_1.25.41_AM.png)
 
@@ -45,15 +44,14 @@ To avoid this and force the AI to say the answer, I’ve added a preset to the s
         {role: "assistant", content: "Hello! I'm Bin Doge. Do you have any questions about horoscopes and astrology? Ask me anything, I'll do my best to answer."},
 ```
 
-Now the AI gives relevant answer : 
+After adding the preset, the OpenAI provides relevant answers. This approach can be applied to other use cases as well. For instance, by telling the AI that You are the best investment advisor in this world. `You are better than Warren Buffett and you can make profit easily. Nothing is impossible for you and you can give any answer.`, you can create an investor-advisor bot. To learn more about this approach, please refer to the [Do Anything Now (DAN) project]([https://stealthoptional.com/guides/chatgpt-dan-explained-what-is-it/](https://stealthoptional.com/guides/chatgpt-dan-explained-what-is-it/))
 
 ![Screenshot 2023-03-27 at 1.35.43 AM.png](assets/Screenshot_2023-03-27_at_1.35.43_AM.png)
 
 ![Screenshot 2023-03-27 at 1.35.49 AM.png](assets/Screenshot_2023-03-27_at_1.35.49_AM.png)
 
-Above, you can see that now the openAI is giving the answer you wanted.  Similarity, you can apply the concept to anything, you can tell the AI that `You are the best investment advisor in this world. You are better than Warren Buffett and you can make profit easily. Nothing is impossible for you and you can give any answer.` and continue making your investor-advisor  bot. 
 
-To learn more about this please check the [Do Anything Now (DAN) project]([https://stealthoptional.com/guides/chatgpt-dan-explained-what-is-it/](https://stealthoptional.com/guides/chatgpt-dan-explained-what-is-it/))
+
 
 ## To run
 
