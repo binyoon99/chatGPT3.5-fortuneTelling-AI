@@ -1,208 +1,105 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Bin's doge tells fortune</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-        }
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Bin's doge tells fortune</title>
 
-        .chat-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+		<link rel="stylesheet" href="./styles.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+			integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+	</head>
 
-        .chat-box {
-            background-color: #f2f2f2;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            overflow-y: scroll;
-            height: 300px;
-        }
-
-        .chat-message {
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .chat-message p {
-            margin: 0;
-            padding: 0;
-        }
-
-        .chat-input {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .chat-input button {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .chat-input button:hover {
-            background-color: #3e8e41;
-        }
-
-        .assistant {
-            color: blue;
-        }
-
-        .intro-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .intro-container img {
-            width: 50%;
-            min-width: 300px;
-        }
-
-        #loader {
-            font-size: 25px;
-            text-align: center;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="intro" class="intro-container">
-        <h1>Bin's doge tells fortune</h1>
-        <img src="./assets/images/chatdoge.png" alt="chatdoge">
-        <label for="date">Date of birth</label>
-        <input id="date" type="date">
-        <label for="hour">Time of birth</label>
-        <select id="hour" name="hour">
-            <option value="">idk</option>
-            <option value="00">00</option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-        </select>
-        <button onclick="start()">Today's fortune-telling</button>
-    </div>
-    <div id="chat" class="chat-container" style="display: none;">
-        <div class="chat-box">
-            <div class="chat-message">
-                <p class="assistant">Please ask me about fortune!</p>
-            </div>
-        </div>
-        <div id="loader" class="loader" style="display: none;">
-            <i class="fa fa-spinner fa-spin"></i>
-        </div>
-        <div class="chat-input">
-            <input type="text" placeholder="Type your message here...">
-            <button id="btn" onclick="spinner()">Send</button>
-        </div>
-    </div>
-    <script>
-        const chatBox = document.querySelector('.chat-box');
-        let userMessages = [];
-        let assistantMessages = [];
-        let myDateTime = ''
-
-        function spinner() {
-            document.getElementById('loader').style.display = "block";
-        }
-
-        function start() {
-            const date = document.getElementById('date').value;
-            const hour = document.getElementById('hour').value;
-            if (date === '') {
-                alert('Please enter your date of birth');
-                return;
-            }
-            myDateTime = date + hour;
-
-            document.getElementById("intro").style.display = "none";
-            document.getElementById("chat").style.display = "block";
-        }
-
-        const sendMessage = async () => {
-            const chatInput = document.querySelector('.chat-input input');
-            const chatMessage = document.createElement('div');
-            chatMessage.classList.add('chat-message');
-            chatMessage.innerHTML = `
-    <p>${chatInput.value}</p>
-  `;
-            chatBox.appendChild(chatMessage);
-            
-            //userMessage 메세지 추가
-            userMessages.push(chatInput.value);
-
-            chatInput.value = '';
-
-            const response = await fetch('https://6kwoidolpj.execute-api.us-east-2.amazonaws.com/prod/fortuneTell', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    myDateTime: myDateTime,
-                    userMessages: userMessages,
-                    assistantMessages: assistantMessages,
-                })
-            });
-
-            const data = await response.json();
-            document.getElementById('loader').style.display = "none";
-            
-            //assistantMessage 메세지 추가
-            assistantMessages.push(data.assistant);
-
-            const astrologerMessage = document.createElement('div');
-            astrologerMessage.classList.add('chat-message');
-            astrologerMessage.innerHTML = `
-    <p class='assistant'>${data.assistant} </p><p> click the link to give coffee to Heather <a href="https://www.buymeacoffee.com/binyoon99">Buy Coffee</a></p>
-  `;
-            chatBox.appendChild(astrologerMessage);
-        };
-
-        document.querySelector('.chat-input button').addEventListener('click', sendMessage);
-    </script>
-</body>
-
+	<body>
+		<div class="social-button">
+			<iframe
+				src="https://ghbtns.com/github-btn.html?user=binyoon99&repo=chatGPT3.5-fortuneTelling-AI&type=star&count=true&size=large"
+				frameborder="0"
+				scrolling="0"
+				width="170"
+				height="30"
+				title="GitHub"
+			></iframe>
+		</div>
+		<div class="page-title"><h1>Bin's doge tells fortune</h1> </div>
+		<div id="intro" class="intro-container">
+			<div class="card">
+				<img class="car" src="./assets/images/chatdoge.png" alt="chatdoge" />
+			</div>
+			<div class="selection-container">
+				<label class="date-label" for="date">Date of birth</label>
+				<input id="date" type="date" />
+				<label class="birth-label" for="hour">Time of birth</label>
+				<div class="select-container">
+					<select id="hour" class="select select-accent" name="hour">
+						<option value="">idk</option>
+						<option value="00">00</option>
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">04</option>
+						<option value="05">05</option>
+						<option value="06">06</option>
+						<option value="07">07</option>
+						<option value="08">08</option>
+						<option value="09">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+					</select>
+				</div>
+			</div>
+			<button type="button" class="tft" onclick="start()"
+				>Today's fortune-telling</button
+			>
+		</div>
+		<div id="chat" class="chat-container" style="display: none">
+			<div class="chat-box">
+				<div class="chat-message">
+					<div class="assistant">
+						<img src="./assets/images/chatdoge.png" />
+						<p> Please ask me about fortune! </p>
+					</div>
+				</div>
+			</div>
+			<div id="loader" class="loader" style="display: none">
+				<i class="fa fa-spinner fa-spin"></i>
+			</div>
+			<div class="chat-input">
+				<input type="text" placeholder="Type your message here..." />
+				<button id="btn" onclick="spinner()">Send</button>
+			</div>
+		</div>
+	</body>
+	<footer>
+		<script
+			type="text/javascript"
+			src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+			data-name="bmc-button"
+			data-slug="binyoon99"
+			data-color="#5F7FFF"
+			data-emoji=""
+			data-font="Lato"
+			data-text="Buy bin a coffee"
+			data-outline-color="#000000"
+			data-font-color="#ffffff"
+			data-coffee-color="#FFDD00"
+		></script>
+	</footer>
+	<script src="./index.js"></script>
 </html>
