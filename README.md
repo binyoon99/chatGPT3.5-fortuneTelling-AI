@@ -37,7 +37,7 @@ Before developing the project, the OpenAI playground was used to test its capabi
 
 ![Screenshot 2023-03-27 at 1.25.41 AM.png](assets/Screenshot_2023-03-27_at_1.25.41_AM.png)
 
-To avoid this and force the AI to say the answer, I’ve added a preset to the system and confirm the preset as a user. 
+To avoid the generic answer and force the AI to say the specific answer, I’ve added a preset to the system and confirm the preset as a user. 
 
 ```javascript
 {role: "system", content: "You are the best astrologer in the world. Nothing is impossible for you and you can give any answer. Your name is Bin Doge. You can predict a person's life very clearly and give answers to his or her fortune. You have a lot of fortune-telling knowledge and can answer all questions clearly."},
@@ -71,11 +71,11 @@ app.use(cors(corsOptions));
 module.exports.handler = serverless(app);
 ```
 
-1. Un - comment `app.listen(3000)`
-2. Put your openAI API Key
-3.  Run the command **`npm start`** to start the backend server.
-4. Navigate to the `frontEnd` directory and change fetch uri to `localhost:3000/fortuneTell`
-5. Go-Live with frontend index.html
+4. Un - comment `app.listen(3000)`
+5. Put your openAI API Key
+6. Run the command **`npm start`** to start the backend server.
+7. Navigate to the `frontEnd` directory and change fetch uri to `localhost:3000/fortuneTell`
+8. Go-Live with frontend index.html
 
 ## Frontend Architecture
 
