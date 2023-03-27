@@ -70,7 +70,7 @@ const sendMessage = async () => {
   astrologerMessage.classList.add("chat-message");
   astrologerMessage.innerHTML = `<div class='assistant'>
   <img src="./assets/images/chatdoge.png" />
-  <p>${data.assistant} </p><p> click the link to give coffee to Heather <a href="https://www.buymeacoffee.com/binyoon99">Buy Coffee</a></p>
+  <p>${data.assistant} </p>
   </div>
 
   `;
