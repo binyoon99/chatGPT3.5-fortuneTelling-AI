@@ -8,7 +8,7 @@ This is a website that utilizes OpenAI's ChatGPT3.5 to guess and predict a user'
 
 - HTML / CSS / JavaScript
 - Node.js
-- [Express.js]([https://www.npmjs.com/package/express](https://www.npmjs.com/package/express))
+- [Express.js](https://www.npmjs.com/package/express)
 - [serverless-http](https://www.npmjs.com/package/serverless-http)
 - [openAI](https://platform.openai.com/docs/introduction)
 - [CloudFlare](https://dash.cloudflare.com/)
@@ -110,7 +110,7 @@ To deploy the backend, you will need to set up an AWS account and Lambda functio
 
 
 # Future Improvement 
-
+- [ ] Make a seperate css and js file from index.html
 - [ ] Add Google AdSense for monetization
 - [ ] Make the frontend / UI better with frameworks
 - [ ] Support multi-languages 
