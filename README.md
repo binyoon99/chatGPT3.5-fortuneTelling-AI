@@ -119,7 +119,7 @@ To deploy the backend, you will need to set up an AWS account and Lambda functio
     - Spanish 
 - [ ] Make light theme and dark theme mode
 
-# Intersting test cases :
+# Interesting test cases :
 
 Weird Test case 1: 
 
